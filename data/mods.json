@@ -6,7 +6,7 @@
       "name": "Luna Advanced Rig Systems",
       "version": "0.4.0",
       "summary": "Custom characters: your own body parts, tails, wings, ears, hair, eyes, animations, sounds, injury art and clothes layered over the body. Works in singleplayer and multiplayer (rigs are sent to other players automatically).",
-      "nexus": "",
+      "nexus": "https://www.nexusmods.com/scavprototype/mods/871",
       "github": "https://github.com/Faolon12/Advanced-Rigs-Casualties-Unknown",
       "image": "",
       "tags": ["characters", "rigs", "multiplayer"]
@@ -16,7 +16,7 @@
       "name": "Luna Integrations",
       "version": "0.4.0",
       "summary": "The LUNA hub: one menu for every mod, keybinds, settings for any mod, turn mods on/off, compatibility checks, mod-list compare with the host, share codes, logs and bug reports, plus multiplayer fixes.",
-      "nexus": "",
+      "nexus": "https://www.nexusmods.com/scavprototype/mods/876",
       "github": "",
       "image": "",
       "tags": ["hub", "fixes", "multiplayer"]
