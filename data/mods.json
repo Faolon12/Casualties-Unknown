@@ -1,0 +1,50 @@
+{
+  "_help": "One entry per mod. Paste your Nexus page link into \"nexus\" (leave it empty to show 'coming soon'). Add a new mod by copying an entry. Optional: \"image\" (a picture in assets/), \"github\", \"tags\".",
+  "mods": [
+    {
+      "id": "advancedrigs",
+      "name": "Luna Advanced Rig Systems",
+      "version": "0.4.0",
+      "summary": "Custom characters: your own body parts, tails, wings, ears, hair, eyes, animations, sounds, injury art and clothes layered over the body. Works in singleplayer and multiplayer (rigs are sent to other players automatically).",
+      "nexus": "",
+      "github": "https://github.com/Faolon12/Advanced-Rigs-Casualties-Unknown",
+      "image": "",
+      "tags": ["characters", "rigs", "multiplayer"]
+    },
+    {
+      "id": "integrations",
+      "name": "Luna Integrations",
+      "version": "0.4.0",
+      "summary": "The LUNA hub: one menu for every mod, keybinds, settings for any mod, turn mods on/off, compatibility checks, mod-list compare with the host, share codes, logs and bug reports, plus multiplayer fixes.",
+      "nexus": "",
+      "github": "",
+      "image": "",
+      "tags": ["hub", "fixes", "multiplayer"]
+    },
+    {
+      "id": "props",
+      "name": "Luna Props",
+      "version": "0.2.0",
+      "summary": "Place furniture and props: sit on chairs, animated objects, vending machines with menus that drop custom items. Make your own packs in the editor.",
+      "nexus": "",
+      "github": "",
+      "image": "",
+      "tags": ["props", "building"]
+    },
+    {
+      "id": "stream",
+      "name": "Luna Stream Interaction",
+      "version": "0.2.0",
+      "summary": "Let Twitch chat play along: channel points, bits, raids, follows, subs and a hype bar trigger in-game events. Share your setup with a code.",
+      "nexus": "",
+      "github": "",
+      "image": "",
+      "tags": ["twitch", "streaming"]
+    }
+  ],
+  "editor": {
+    "name": "Luna Rig Editor",
+    "summary": "Make rigs, clothes, props and sprites right in your browser. Nothing to install.",
+    "url": "https://faolon12.github.io/Advanced-Rigs-Casualties-Unknown/"
+  }
+}

@@ -1,0 +1,50 @@
+# Add the "approved" label to a "Share a resource" issue → its files are checked and added to the hub.
+name: Accept shared resource
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: hub-publish
+  cancel-in-progress: false
+jobs:
+  accept:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check and add the files
+        id: acc
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python tools/accept_issue.py
+      - name: Rebuild the list
+        run: python tools/build_index.py
+      - name: Commit
+        env:
+          RID: ${{ steps.acc.outputs.id }}
+        run: |
+          git config user.name "luna-hub-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resources data/resources.json
+          git commit -m "Add shared resource: $RID" || echo "nothing to commit"
+          git pull --rebase
+          git push
+      - name: Tell the uploader
+        uses: actions/github-script@v7
+        env:
+          RID: ${{ steps.acc.outputs.id }}
+        with:
+          script: |
+            const url = `https://${context.repo.owner.toLowerCase()}.github.io/${context.repo.repo}/#r=${encodeURIComponent(process.env.RID)}`;
+            await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number,
+              body: `It's on the hub! 🎉 ${url}\n(It can take a minute or two to show up.)\n\nKeep this post open for comments and questions about it.` });
+            await github.rest.issues.addLabels({ ...context.repo, issue_number: context.issue.number, labels: ['published'] });
+            try { await github.rest.issues.removeLabel({ ...context.repo, issue_number: context.issue.number, name: 'needs-changes' }); } catch (e) {}

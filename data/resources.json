@@ -1,0 +1,25 @@
+{
+ "generated": "2026-11-09T22:04:13Z",
+ "resources": [
+  {
+   "id": "faolon-rig",
+   "name": "Faolon",
+   "type": "rig",
+   "official": true,
+   "author": "Faolon12",
+   "description": "The author's own character, and the example rig that comes with Luna Advanced Rig Systems: custom body, a swinging tail, wings that fold and open, ears and fringe with physics, a looping scarf, its own eyes and head states.\n\nUnzip into BepInEx/plugins/AdvancedRigs/Rigs/ (you get a FaolonRig folder), or drop the zip into the editor to look at how it's made and build your own from it.",
+   "tags": [
+    "example",
+    "wings",
+    "tail",
+    "scarf",
+    "starter"
+   ],
+   "preview": "preview.gif",
+   "file": "faolon-rig.zip",
+   "size": 34558,
+   "added": "2026-11-09",
+   "needs": "Luna Advanced Rig Systems 0.4"
+  }
+ ]
+}

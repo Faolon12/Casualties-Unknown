@@ -1,0 +1,74 @@
+name: Share a resource
+description: Share a rig, add-on, gear texture, sprites or a props pack with everyone on the LUNA hub.
+title: "[Share] "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing! Drag your **zip** and a **picture** into the boxes below (GitHub uploads them for you).
+        Once it's checked, it appears on the hub and you get a comment here.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: What is it called?
+      placeholder: Fox with scarf
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Rig (a whole character)
+        - Add-on (wings, tail, ears, flag band, other pieces)
+        - Gear texture (backpack, helmet, gloves…)
+        - Sprites
+        - Props pack
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Your name (as it should show on the hub)
+      placeholder: Leave empty to use your GitHub name
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What it is and how to use it. Mention anything it needs (e.g. Luna Advanced Rig Systems 0.4).
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: A few words, separated by commas
+      placeholder: fox, scarf, orange
+  - type: textarea
+    id: preview
+    attributes:
+      label: Picture
+      description: Drag ONE picture here (PNG, JPG, GIF or WEBP). A screenshot from the editor's Test tab or the game works great.
+    validations:
+      required: true
+  - type: textarea
+    id: file
+    attributes:
+      label: File
+      description: Drag your ZIP here. It may only contain .png, .json, .wav, .ogg, .mp3, .txt and .md files (max 25 MB).
+    validations:
+      required: true
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Rules
+      options:
+        - label: I made this, or I have permission from the person who did.
+          required: true
+        - label: It has no spoilers for the game's late layers (in the picture, name or description).
+          required: true
+        - label: It's OK for anyone to download and use it in their game.
+          required: true

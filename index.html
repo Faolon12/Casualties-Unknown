@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUNA · Casualties: Unknown mods &amp; community resources</title>
+<meta name="description" content="Luna mods for Casualties: Unknown, the rig editor, and community rigs, add-ons, sprites and props to download and share.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#"><span class="bar"></span>LUNA <em>for Casualties: Unknown</em></a>
+  <nav>
+    <a href="#mods">Mods</a>
+    <a href="#editor">Editor</a>
+    <a href="#author">Starters</a>
+    <a href="#community">Community</a>
+    <a href="#share" class="cta">Share yours</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Mods, tools and a place to share what you make.</h1>
+    <p>Download the Luna mods, build characters in the editor, and grab rigs, add-ons, sprites and props made by other players.</p>
+    <div class="hero-btns">
+      <a class="btn red" href="#mods">Get the mods</a>
+      <a class="btn" id="heroEditor" href="#editor">Open the editor</a>
+      <a class="btn" href="#community">Browse community stuff</a>
+    </div>
+  </section>
+
+  <section id="mods">
+    <h2><span>//</span> Mods</h2>
+    <div class="grid mods" id="modList"><div class="muted">Loading…</div></div>
+  </section>
+
+  <section id="editor">
+    <h2><span>//</span> Editor</h2>
+    <div class="editor-card">
+      <div>
+        <h3 id="edName">Luna Rig Editor</h3>
+        <p id="edSummary"></p>
+        <ul class="feat">
+          <li>Turn a drawing or PSD into a character that moves, ragdolls and loses limbs like the real one</li>
+          <li>Tails, wings, ears and hair that swing with physics</li>
+          <li>Clothes, patches and armbands drawn over the body, and kept above worn gear</li>
+          <li>Built-in Sprite Paint, gear redraws, props and vending machines</li>
+        </ul>
+      </div>
+      <a class="btn red big" id="edLink" href="#" target="_blank" rel="noopener">Open the editor ↗</a>
+    </div>
+  </section>
+
+  <section id="author">
+    <h2><span>//</span> From the author</h2>
+    <p class="muted">Starter rigs and resources made by Faolon. Download them, play with them, or open them in the editor to see how they're built.</p>
+    <div class="grid res" id="authorList"><div class="muted">Loading…</div></div>
+  </section>
+
+  <section id="community">
+    <h2><span>//</span> Community resources</h2>
+    <p class="muted">Made by players, for players. Click a card for a closer look. Everything here was checked before it went up: rig packs contain only pictures, sounds and settings, never programs.</p>
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search names, tags, authors…" aria-label="Search">
+      <div class="chips" id="typeChips"></div>
+      <select id="sort" aria-label="Sort">
+        <option value="new">Newest</option>
+        <option value="name">A–Z</option>
+      </select>
+    </div>
+    <div class="grid res" id="resList"><div class="muted">Loading…</div></div>
+  </section>
+
+  <section id="share">
+    <h2><span>//</span> Share yours</h2>
+    <div class="share">
+      <ol>
+        <li><b>Export</b> from the editor (rig zip, add-on, gear or props pack), or zip your sprites.</li>
+        <li><b>Take a picture</b> of it: a screenshot from the editor's Test tab or the game works great.</li>
+        <li><b>Press the button</b> and fill in the form. You'll need a free GitHub account. Drag the zip and the picture into the form.</li>
+        <li>Once it's checked, it shows up here and you get a comment on your post.</li>
+      </ol>
+      <div class="share-side">
+        <a class="btn red big" id="shareBtn" href="#" target="_blank" rel="noopener">Share something ↗</a>
+        <p class="muted small">Only share things you made, or have permission to share. No content from the game's late layers in pictures or names, so nobody gets spoiled. Zips may only contain .png, .json, .wav, .ogg, .mp3, .txt and .md files.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Fan-made mods and tools. Not made by or affiliated with the developer of <i>Casualties: Unknown</i>.</span>
+  <a id="repoLink" href="#" target="_blank" rel="noopener">Source on GitHub</a>
+</footer>
+
+<div id="modal" class="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="x" id="mClose" aria-label="Close">✕</button>
+    <div class="m-img"><img id="mImg" alt=""></div>
+    <div class="m-body">
+      <div class="pill" id="mType"></div>
+      <h3 id="mTitle"></h3>
+      <div class="muted" id="mBy"></div>
+      <p id="mDesc"></p>
+      <div class="tags" id="mTags"></div>
+      <div class="m-meta" id="mMeta"></div>
+      <div class="m-btns" id="mBtns"></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
