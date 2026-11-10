@@ -16,6 +16,7 @@
     <a href="#editor">Editor</a>
     <a href="#author">Starters</a>
     <a href="#community">Community</a>
+    <a href="#stream">Stream setups</a>
     <a href="#share" class="cta">Share yours</a>
   </nav>
 </header>
@@ -49,7 +50,11 @@
           <li>Built-in Sprite Paint, gear redraws, props and vending machines</li>
         </ul>
       </div>
-      <a class="btn red big" id="edLink" href="#" target="_blank" rel="noopener">Open the editor ↗</a>
+      <div class="ed-btns">
+        <a class="btn red big" id="edLink" href="#" target="_blank" rel="noopener">Open the editor ↗</a>
+        <a class="btn" id="edDown" href="#" download="Luna-Rig-Editor.html" title="One file. Double-click it to use the editor without internet.">⬇ Download (works offline)</a>
+        <a class="btn" id="edZip" href="#" title="Everything: the editor, its source and the test rigs">⬇ Source (.zip)</a>
+      </div>
     </div>
   </section>
 
@@ -73,6 +78,12 @@
     <div class="grid res" id="resList"><div class="muted">Loading…</div></div>
   </section>
 
+  <section id="stream">
+    <h2><span>//</span> Stream setups</h2>
+    <p class="muted">Ready-made setups for Luna Stream Interaction: channel point rewards, chat commands, bits, raid/sub events and the hype bar. Copy a code, then in game: F9 → Presets → <b>Paste a code</b>.</p>
+    <div class="grid res stream" id="streamList"><div class="muted">Loading…</div></div>
+  </section>
+
   <section id="share">
     <h2><span>//</span> Share yours</h2>
     <div class="share">
@@ -84,6 +95,7 @@
       </ol>
       <div class="share-side">
         <a class="btn red big" id="shareBtn" href="#" target="_blank" rel="noopener">Share something ↗</a>
+        <a class="btn" id="shareStream" href="#" target="_blank" rel="noopener">Share a stream setup code ↗</a>
         <p class="muted small">Only share things you made, or have permission to share. No content from the game's late layers in pictures or names, so nobody gets spoiled. Zips may only contain .png, .json, .wav, .ogg, .mp3, .txt and .md files.</p>
       </div>
     </div>

@@ -3,7 +3,7 @@
 Run by .github/workflows/accept-resource.yml when you add the "approved" label to the issue.
 Everything in the issue is treated as untrusted: only GitHub-hosted attachments are downloaded,
 pictures must really be pictures, and zips may only hold art, sounds and settings."""
-import json, os, re, sys, io, zipfile, datetime, urllib.request, urllib.error
+import json, os, re, sys, io, gzip, base64, zipfile, datetime, urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = os.environ.get('REPO', '')
@@ -95,9 +95,58 @@ def slugify(s):
     s = re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
     return (s or 'resource')[:40].strip('-')
 
+def stream_setup(code):
+    """Reads a Stream Interaction share code (LUNA1: + base64(gzip(json))), wipes anything personal again,
+    and returns (clean code, summary for the hub)."""
+    m = re.search(r'LUNA1:[A-Za-z0-9+/=\s]+', code or '')
+    code = re.sub(r'\s+', '', m.group(0)) if m else ''
+    if not code.startswith('LUNA1:'):
+        raise Refuse('the share code must start with LUNA1:')
+    try:
+        raw = gzip.decompress(base64.b64decode(code[6:], validate=True))
+        if len(raw) > 2 * 1024 * 1024:
+            raise Refuse('the share code is too big')
+        st = json.loads(raw.decode('utf-8'))
+    except Refuse:
+        raise
+    except Exception:
+        raise Refuse("the share code couldn't be read (copy it again from the game: Presets → Copy my setup as a code)")
+    if not isinstance(st, dict) or not isinstance(st.get('actions'), list):
+        raise Refuse("that code isn't a Stream Interaction setup")
+    # never publish logins, keys or the channel, even if an old version left them in
+    st['channel'] = ''; st['clientId'] = ''
+    yt = st.get('youtube') if isinstance(st.get('youtube'), dict) else {}
+    yt.update({'apiKey': '', 'liveTarget': '', 'enabled': False}); st['youtube'] = yt
+    for a in st['actions']:
+        if isinstance(a, dict): a['rewardId'] = ''
+    clean = 'LUNA1:' + base64.b64encode(gzip.compress(json.dumps(st, separators=(',', ':')).encode('utf-8'))).decode('ascii')
+    acts = []
+    for a in st['actions'][:80]:
+        if not isinstance(a, dict) or not a.get('enabled', True):
+            continue
+        how = []
+        if a.get('chatEnabled') and a.get('chatCommand'): how.append('chat ' + clean_text(a.get('chatCommand'), 30))
+        if a.get('pointsEnabled'): how.append(str(int(a.get('pointsCost') or 0)) + ' points')
+        if a.get('bitsEnabled'): how.append(str(int(a.get('bitsCost') or 0)) + ' bits')
+        if a.get('powerUpEnabled') and a.get('powerUpTitle'): how.append('power-up')
+        acts.append({'name': clean_text(a.get('name') or a.get('type') or '?', 50), 'type': clean_text(str(a.get('type', '')), 30), 'how': how})
+    evs = []
+    for e in (st.get('events') or [])[:20]:
+        if isinstance(e, dict) and e.get('enabled'):
+            evs.append(clean_text(str(e.get('kind', '')), 20))
+    hype = st.get('hype') if isinstance(st.get('hype'), dict) else {}
+    chaos = st.get('chaos') if isinstance(st.get('chaos'), dict) else {}
+    summary = {'actions': acts, 'events': evs, 'hype': bool(hype.get('enabled')), 'chaos': bool(chaos.get('enabled'))}
+    return clean, summary
+
+def clean_text(s, n):
+    return clean(str(s), n)
+
 def main():
     issue = api('GET', '/issues/' + NUM)
     sec = sections(issue.get('body'))
+    if field(sec, 'share code'):
+        return main_stream(issue, sec)
     name = clean(field(sec, 'name'), 60)
     if not name:
         raise Refuse('the Name is empty')
@@ -136,6 +185,26 @@ def main():
         with open(out, 'a') as f:
             f.write(f'id={rid}\n')
     print('accepted', rid)
+
+def main_stream(issue, sec):
+    name = clean(field(sec, 'name'), 60)
+    if not name:
+        raise Refuse('the Name is empty')
+    code, summary = stream_setup(field(sec, 'share code'))
+    rid = slugify(name) + '-' + NUM
+    folder = os.path.join(ROOT, 'resources', rid)
+    os.makedirs(folder, exist_ok=True)
+    for f in os.listdir(folder):
+        os.remove(os.path.join(folder, f))
+    meta = {'id': rid, 'name': name, 'type': 'stream', 'author': clean(field(sec, 'your name'), 40) or issue['user']['login'],
+            'description': clean(field(sec, 'description'), 2000), 'tags': [clean(t, 24) for t in field(sec, 'tags').split(',') if t.strip()][:10],
+            'code': code, 'summary': summary, 'issue': int(NUM), 'added': datetime.date.today().isoformat(), 'needs': 'Luna Stream Interaction 0.2'}
+    json.dump(meta, open(os.path.join(folder, 'meta.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    out = os.environ.get('GITHUB_OUTPUT')
+    if out:
+        with open(out, 'a') as f:
+            f.write(f'id={rid}\n')
+    print('accepted stream setup', rid)
 
 if __name__ == '__main__':
     try:

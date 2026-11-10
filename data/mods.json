@@ -9,7 +9,11 @@
       "nexus": "https://www.nexusmods.com/scavprototype/mods/871",
       "github": "https://github.com/Faolon12/Advanced-Rigs-Casualties-Unknown",
       "image": "",
-      "tags": ["characters", "rigs", "multiplayer"]
+      "tags": [
+        "characters",
+        "rigs",
+        "multiplayer"
+      ]
     },
     {
       "id": "integrations",
@@ -19,7 +23,11 @@
       "nexus": "https://www.nexusmods.com/scavprototype/mods/876",
       "github": "",
       "image": "",
-      "tags": ["hub", "fixes", "multiplayer"]
+      "tags": [
+        "hub",
+        "fixes",
+        "multiplayer"
+      ]
     },
     {
       "id": "props",
@@ -29,7 +37,10 @@
       "nexus": "",
       "github": "",
       "image": "",
-      "tags": ["props", "building"]
+      "tags": [
+        "props",
+        "building"
+      ]
     },
     {
       "id": "stream",
@@ -39,12 +50,17 @@
       "nexus": "",
       "github": "",
       "image": "",
-      "tags": ["twitch", "streaming"]
+      "tags": [
+        "twitch",
+        "streaming"
+      ]
     }
   ],
   "editor": {
     "name": "Luna Rig Editor",
     "summary": "Make rigs, clothes, props and sprites right in your browser. Nothing to install.",
-    "url": "https://faolon12.github.io/Advanced-Rigs-Casualties-Unknown/"
+    "url": "https://faolon12.github.io/Advanced-Rigs-Casualties-Unknown/",
+    "download": "https://faolon12.github.io/Advanced-Rigs-Casualties-Unknown/index.html",
+    "zip": "https://github.com/Faolon12/Advanced-Rigs-Casualties-Unknown/archive/refs/heads/main.zip"
   }
 }

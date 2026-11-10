@@ -101,3 +101,10 @@ footer { border-top: 1px solid var(--line); padding: 20px 28px; display: flex; j
 @media (max-width: 760px) { .sheet { grid-template-columns: minmax(0, 1fr); } .m-img { min-height: 220px; } }
 .pill.star { background: #2b2410; color: #f3c44f; }
 .res .body .tags { gap: 4px; }
+.ed-btns { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+.res.stream .card .body { padding: 16px; gap: 6px; }
+.modal.noimg .sheet { grid-template-columns: minmax(0, 1fr); max-width: 640px; }
+.modal.noimg .m-img { display: none; }
+.acts { display: grid; gap: 4px; background: var(--panel2); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+.acts .act { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 4px; }
+.acts .how { color: var(--muted); font: 12px var(--mono); text-align: right; }

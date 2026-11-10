@@ -1,8 +1,30 @@
 {
-  "rig": { "label": "Rigs", "hint": "Whole characters for Luna Advanced Rig Systems" },
-  "addon": { "label": "Add-ons", "hint": "Wings, tails, ears, flag bands and other pieces to add to a rig" },
-  "gear": { "label": "Gear textures", "hint": "Redrawn backpacks, helmets, gloves…" },
-  "sprite": { "label": "Sprites", "hint": "Sprite swaps and art" },
-  "props": { "label": "Props", "hint": "Packs for Luna Props" },
-  "other": { "label": "Other", "hint": "Anything else" }
+ "rig": {
+  "label": "Rigs",
+  "hint": "Whole characters for Luna Advanced Rig Systems"
+ },
+ "addon": {
+  "label": "Add-ons",
+  "hint": "Wings, tails, ears, clothes and other pieces to add to a rig"
+ },
+ "gear": {
+  "label": "Gear textures",
+  "hint": "Redrawn backpacks, helmets, gloves\u2026"
+ },
+ "sprite": {
+  "label": "Sprites",
+  "hint": "Sprite swaps and art"
+ },
+ "props": {
+  "label": "Props",
+  "hint": "Packs for Luna Props"
+ },
+ "other": {
+  "label": "Other",
+  "hint": "Anything else"
+ },
+ "stream": {
+  "label": "Stream setups",
+  "hint": "Luna Stream Interaction setups, shared as a code"
+ }
 }

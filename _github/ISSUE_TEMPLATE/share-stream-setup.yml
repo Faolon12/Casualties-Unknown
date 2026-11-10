@@ -1,0 +1,51 @@
+name: Share a stream setup
+description: Share your Luna Stream Interaction setup (channel point rewards, chat commands, bits, raid/sub events, hype bar) as a share code.
+title: "[Stream setup] "
+labels: ["submission", "stream-setup"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        In game: open Stream Interaction (F9) → **Presets** → **Copy my setup as a code**, then paste it below.
+        The code has no logins, keys or channel name in it. Once it's checked, the hub lists every action in your setup.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      placeholder: Chaotic but fair
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Your name (as it should show on the hub)
+      placeholder: Leave empty to use your GitHub name
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What's it like? Who is it for (small streams, big chats, chill runs…)?
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      placeholder: chaos, small streams, bits
+  - type: textarea
+    id: code
+    attributes:
+      label: Share code
+      description: Starts with LUNA1:
+      render: text
+    validations:
+      required: true
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Rules
+      options:
+        - label: It's OK for anyone to copy and use this setup.
+          required: true
+        - label: Names, chat messages and descriptions have no spoilers for the game's late layers.
+          required: true

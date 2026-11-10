@@ -6,7 +6,7 @@ import json, os, sys, datetime
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(ROOT, 'resources')
 TYPES = json.load(open(os.path.join(ROOT, 'data', 'types.json'), encoding='utf-8'))
-KEYS = ('id', 'name', 'type', 'official', 'author', 'description', 'tags', 'preview', 'file', 'size', 'added', 'issue', 'needs')
+KEYS = ('id', 'name', 'type', 'official', 'author', 'description', 'tags', 'preview', 'file', 'size', 'added', 'issue', 'needs', 'code', 'summary')
 
 def main():
     out, problems = [], []
