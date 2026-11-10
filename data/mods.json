@@ -4,7 +4,7 @@
     {
       "id": "advancedrigs",
       "name": "Luna Advanced Rig Systems",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "summary": "Custom characters: your own body parts, tails, wings, ears, hair, eyes, animations, sounds, injury art and clothes layered over the body. Works in singleplayer and multiplayer (rigs are sent to other players automatically).",
       "nexus": "https://www.nexusmods.com/scavprototype/mods/871",
       "github": "https://github.com/Faolon12/Advanced-Rigs-Casualties-Unknown",
@@ -18,7 +18,7 @@
     {
       "id": "integrations",
       "name": "Luna Integrations",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "summary": "The LUNA hub: one menu for every mod, keybinds, settings for any mod, turn mods on/off, compatibility checks, mod-list compare with the host, share codes, logs and bug reports, plus multiplayer fixes.",
       "nexus": "https://www.nexusmods.com/scavprototype/mods/876",
       "github": "",
@@ -32,7 +32,7 @@
     {
       "id": "props",
       "name": "Luna Props",
-      "version": "0.2.0",
+      "version": "0.5.0",
       "summary": "Place furniture and props: sit on chairs, animated objects, vending machines with menus that drop custom items. Make your own packs in the editor.",
       "nexus": "",
       "github": "",
@@ -45,7 +45,7 @@
     {
       "id": "stream",
       "name": "Luna Stream Interaction",
-      "version": "0.2.0",
+      "version": "0.5.0",
       "summary": "Let Twitch chat play along: channel points, bits, raids, follows, subs and a hype bar trigger in-game events. Share your setup with a code.",
       "nexus": "",
       "github": "",

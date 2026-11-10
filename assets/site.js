@@ -17,8 +17,8 @@
     renderMods(mods);
     TYPES = types || {};
     ALL = (res && Array.isArray(res.resources)) ? res.resources : [];
-    RES = ALL.filter((r) => !r.official && r.type !== 'stream');
-    renderAuthor(); renderStream(); renderChips(); renderRes(); openFromHash();
+    RES = ALL.filter((r) => !r.official && r.type !== 'stream' && r.type !== 'props');
+    renderAuthor(); renderProps(); renderStream(); renderChips(); renderRes(); openFromHash();
   });
 
   function renderMods(m) {
@@ -52,7 +52,7 @@
 
   function renderChips() {
     const counts = {}; RES.forEach((r) => { counts[r.type] = (counts[r.type] || 0) + 1; });
-    const keys = ['all'].concat(Object.keys(TYPES).filter((k) => k !== 'stream'));
+    const keys = ['all'].concat(Object.keys(TYPES).filter((k) => k !== 'stream' && k !== 'props'));
     $('#typeChips').innerHTML = keys.map((k) => {
       const lab = k === 'all' ? 'All' : TYPES[k].label, n = k === 'all' ? RES.length : (counts[k] || 0);
       return `<button class="chip" data-t="${esc(k)}" aria-pressed="${k === type}" title="${esc(k === 'all' ? '' : TYPES[k].hint)}">${esc(lab)} · ${n}</button>`;
@@ -104,8 +104,13 @@
     }).join('');
     bindCards(box);
   }
+  function renderProps() {
+    const list = ALL.filter((r) => r.type === 'props').sort((a, b) => (b.official ? 1 : 0) - (a.official ? 1 : 0) || String(b.added || '').localeCompare(String(a.added || ''))), box = $('#propsList');
+    if (!list.length) { box.innerHTML = '<div class="empty">No prop packs yet. Be the first: <a href="#share">share one</a>!</div>'; return; }
+    box.innerHTML = list.map(cardHtml).join(''); bindCards(box);
+  }
   function renderAuthor() {
-    const list = ALL.filter((r) => r.official), box = $('#authorList');
+    const list = ALL.filter((r) => r.official && r.type !== 'props' && r.type !== 'stream'), box = $('#authorList');
     if (!list.length) { $('#author').hidden = true; return; }
     box.innerHTML = list.map(cardHtml).join(''); bindCards(box);
   }
