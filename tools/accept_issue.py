@@ -63,6 +63,31 @@ def pic_ext(b):
     if b[:4] == b'RIFF' and b[8:12] == b'WEBP': return '.webp'
     return None
 
+# Leftovers that editors and operating systems drop next to real files (backups, thumbnails, Mac
+# metadata). They are harmless, so they are taken out of the zip instead of refusing the upload.
+JUNK_NAMES = {'thumbs.db', 'desktop.ini', '.ds_store'}
+JUNK_EXTS = {'.bak', '.tmp', '.orig', '.swp'}
+
+def is_junk(n):
+    parts = n.replace('\\', '/').split('/')
+    base = parts[-1].lower()
+    return ('__MACOSX' in parts or base in JUNK_NAMES or base.startswith('._') or base.endswith('~')
+            or os.path.splitext(base)[1] in JUNK_EXTS)
+
+def strip_junk(b):
+    """Returns (zip bytes without junk files, list of names that were taken out)."""
+    z = zipfile.ZipFile(io.BytesIO(b))
+    junk = [i.filename for i in z.infolist() if not i.filename.endswith('/') and is_junk(i.filename)]
+    if not junk:
+        return b, []
+    out = io.BytesIO()
+    with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as w:
+        for i in z.infolist():
+            if i.filename in junk or (i.filename.endswith('/') and '__MACOSX' in i.filename.split('/')):
+                continue
+            w.writestr(i, z.read(i.filename))
+    return out.getvalue(), junk
+
 def check_zip(b):
     if not zipfile.is_zipfile(io.BytesIO(b)):
         raise Refuse('the file is not a zip')
@@ -166,6 +191,11 @@ def main():
     if not pext:
         raise Refuse('the picture is not a PNG, JPG, GIF or WEBP')
     zb = download(files[0], MAX_ZIP)
+    if not zipfile.is_zipfile(io.BytesIO(zb)):
+        raise Refuse('the file is not a zip')
+    zb, junk = strip_junk(zb)
+    if junk:
+        print('took out leftover files:', ', '.join(junk))
     check_zip(zb)
 
     rid = slugify(name) + '-' + NUM
